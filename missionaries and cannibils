@@ -1,0 +1,112 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOTkb7kpVLd7Gt09kQ8mL8U",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/192524394simats-creator/CSA1707/blob/main/missionaries%20and%20cannibils\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 4,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "iPhfR1Ip9VgP",
+        "outputId": "455d7cbd-af3f-4d1d-a443-8ad70cbd12f5"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Solution Found:\n",
+            "(3, 3, 1)\n",
+            "(3, 1, 0)\n",
+            "(3, 2, 1)\n",
+            "(3, 0, 0)\n",
+            "(3, 1, 1)\n",
+            "(1, 1, 0)\n",
+            "(2, 2, 1)\n",
+            "(0, 2, 0)\n",
+            "(0, 3, 1)\n",
+            "(0, 1, 0)\n",
+            "(1, 1, 1)\n",
+            "(0, 0, 0)\n"
+          ]
+        }
+      ],
+      "source": [
+        "\n",
+        "from collections import deque\n",
+        "\n",
+        "def solve():\n",
+        "    start = (3, 3, 1)\n",
+        "    goal = (0, 0, 0)\n",
+        "\n",
+        "    moves = [(1, 0), (2, 0), (0, 1),\n",
+        "             (0, 2), (1, 1)]\n",
+        "\n",
+        "    queue = deque([(start, [])])\n",
+        "    visited = {start}\n",
+        "\n",
+        "    while queue:\n",
+        "        state, path = queue.popleft()\n",
+        "        m, c, boat = state\n",
+        "\n",
+        "        if state == goal:\n",
+        "            print(\"Solution Found:\")\n",
+        "            for step in path + [state]:\n",
+        "                print(step)\n",
+        "            return\n",
+        "\n",
+        "        for dm, dc in moves:\n",
+        "            if boat == 1:\n",
+        "                new_state = (m - dm, c - dc, 0)\n",
+        "            else:\n",
+        "                new_state = (m + dm, c + dc, 1)\n",
+        "\n",
+        "            nm, nc, nb = new_state\n",
+        "\n",
+        "            if not (0 <= nm <= 3 and 0 <= nc <= 3):\n",
+        "                continue\n",
+        "\n",
+        "            rm = 3 - nm\n",
+        "            rc = 3 - nc\n",
+        "\n",
+        "            if (nm > 0 and nc > nm) or (rm > 0 and rc > rm):\n",
+        "                continue\n",
+        "\n",
+        "            if new_state not in visited:\n",
+        "                visited.add(new_state)\n",
+        "                queue.append((new_state, path + [state]))\n",
+        "\n",
+        "    print(\"No solution found.\")\n",
+        "\n",
+        "solve()\n",
+        "\n"
+      ]
+    }
+  ]
+}
