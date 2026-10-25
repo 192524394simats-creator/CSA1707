@@ -1,0 +1,87 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyN4pF1yoWKSVBOy/T4g75rc",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/192524394simats-creator/CSA1707/blob/main/dfs%20program\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-L-HAVxQQq7r",
+        "outputId": "e7fc3acd-27ee-4c92-9a44-a5b9a1c25476"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "DFS Traversal:\n",
+            "A B D E C F G "
+          ]
+        }
+      ],
+      "source": [
+        "\n",
+        "\n",
+        "from collections import deque\n",
+        "\n",
+        "def bfs(graph, start):\n",
+        "    visited = set()\n",
+        "    queue = deque([start])\n",
+        "\n",
+        "\n",
+        "def dfs(graph, start, visited=None):\n",
+        "    if visited is None:\n",
+        "        visited = set()\n",
+        "\n",
+        "    if start not in visited:\n",
+        "        print(start, end=\" \")\n",
+        "        visited.add(start)\n",
+        "\n",
+        "        for neighbor in graph[start]:\n",
+        "            dfs(graph, neighbor, visited)\n",
+        "\n",
+        "\n",
+        "# Graph representation\n",
+        "graph = {\n",
+        "    'A': ['B', 'C'],\n",
+        "    'B': ['D', 'E'],\n",
+        "    'C': ['F', 'G'],\n",
+        "    'D': [],\n",
+        "    'E': [],\n",
+        "    'F': [],\n",
+        "    'G': []\n",
+        "}\n",
+        "\n",
+        "print(\"DFS Traversal:\")\n",
+        "dfs(graph, 'A')"
+      ]
+    }
+  ]
+}
