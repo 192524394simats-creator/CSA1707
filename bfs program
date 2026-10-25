@@ -1,0 +1,85 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNlyU75LoNRdv1+9vAXcn1G",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/192524394simats-creator/CSA1707/blob/main/bfs%20program\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-L-HAVxQQq7r",
+        "outputId": "4cc9340c-46d3-48a5-aab2-efa8ebc80150"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "BFS Traversal:\n",
+            "A B C D E F G "
+          ]
+        }
+      ],
+      "source": [
+        "\n",
+        "\n",
+        "from collections import deque\n",
+        "\n",
+        "def bfs(graph, start):\n",
+        "    visited = set()\n",
+        "    queue = deque([start])\n",
+        "\n",
+        "    while queue:\n",
+        "        node = queue.popleft()\n",
+        "\n",
+        "        if node not in visited:\n",
+        "            print(node, end=\" \")\n",
+        "            visited.add(node)\n",
+        "\n",
+        "            for neighbor in graph[node]:\n",
+        "                if neighbor not in visited:\n",
+        "                    queue.append(neighbor)\n",
+        "\n",
+        "# Graph representation\n",
+        "graph = {\n",
+        "    'A': ['B', 'C'],\n",
+        "    'B': ['D', 'E'],\n",
+        "    'C': ['F', 'G'],\n",
+        "    'D': [],\n",
+        "    'E': [],\n",
+        "    'F': [],\n",
+        "    'G': []\n",
+        "}\n",
+        "\n",
+        "print(\"BFS Traversal:\")\n",
+        "bfs(graph, 'A')\n"
+      ]
+    }
+  ]
+}
