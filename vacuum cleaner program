@@ -1,0 +1,93 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMyVM4io6GgPy1eysHGtHbz",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/192524394simats-creator/CSA1707/blob/main/vacuum%20cleaner%20program\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-L-HAVxQQq7r",
+        "outputId": "23f318cd-0761-43cc-8bb7-a8fe79a5e14d"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "Current Location: A\n",
+            "Room A is Dirty\n",
+            "Action: Suck\n",
+            "\n",
+            "Current Location: A\n",
+            "Action: Move Right\n",
+            "\n",
+            "Current Location: B\n",
+            "Room B is Dirty\n",
+            "Action: Suck\n",
+            "\n",
+            "All rooms are Clean!\n",
+            "Final Status: {'A': 'Clean', 'B': 'Clean'}\n"
+          ]
+        }
+      ],
+      "source": [
+        "\n",
+        "# Vacuum Cleaner Problem in AI\n",
+        "\n",
+        "rooms = {\n",
+        "    'A': 'Dirty',\n",
+        "    'B': 'Dirty'\n",
+        "}\n",
+        "\n",
+        "location = 'A'\n",
+        "\n",
+        "while 'Dirty' in rooms.values():\n",
+        "    print(\"\\nCurrent Location:\", location)\n",
+        "\n",
+        "    if rooms[location] == 'Dirty':\n",
+        "        print(\"Room\", location, \"is Dirty\")\n",
+        "        print(\"Action: Suck\")\n",
+        "        rooms[location] = 'Clean'\n",
+        "\n",
+        "    elif location == 'A':\n",
+        "        print(\"Action: Move Right\")\n",
+        "        location = 'B'\n",
+        "\n",
+        "    elif location == 'B':\n",
+        "        print(\"Action: Move Left\")\n",
+        "        location = 'A'\n",
+        "\n",
+        "print(\"\\nAll rooms are Clean!\")\n",
+        "print(\"Final Status:\", rooms)\n"
+      ]
+    }
+  ]
+}
