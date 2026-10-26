@@ -1,0 +1,107 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPNFTp9eXkA8FQzu9f0CR6P",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/192524394simats-creator/CSA1707/blob/main/alpha%20beta%20pruning%20problem\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1-_uEi2V3_Y0",
+        "outputId": "db363fdb-a017-4ce3-d545-ae55e5d5114e"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "The optimal value is: 12\n"
+          ]
+        }
+      ],
+      "source": [
+        "\n",
+        "# Alpha-Beta Pruning Algorithm\n",
+        "\n",
+        "def alphabeta(depth, node, is_maximizing, scores, alpha, beta):\n",
+        "\n",
+        "    # If leaf node is reached\n",
+        "    if depth == 3:\n",
+        "        return scores[node]\n",
+        "\n",
+        "    if is_maximizing:\n",
+        "        best = float('-inf')\n",
+        "\n",
+        "        for i in range(2):\n",
+        "            value = alphabeta(depth + 1, node * 2 + i,\n",
+        "                              False, scores, alpha, beta)\n",
+        "\n",
+        "            best = max(best, value)\n",
+        "            alpha = max(alpha, best)\n",
+        "\n",
+        "            # Beta pruning\n",
+        "            if beta <= alpha:\n",
+        "                break\n",
+        "\n",
+        "        return best\n",
+        "\n",
+        "    else:\n",
+        "        best = float('inf')\n",
+        "\n",
+        "        for i in range(2):\n",
+        "            value = alphabeta(depth + 1, node * 2 + i,\n",
+        "                              True, scores, alpha, beta)\n",
+        "\n",
+        "            best = min(best, value)\n",
+        "            beta = min(beta, best)\n",
+        "\n",
+        "            # Alpha pruning\n",
+        "            if beta <= alpha:\n",
+        "                break\n",
+        "\n",
+        "        return best\n",
+        "\n",
+        "\n",
+        "# Leaf node values\n",
+        "scores = [3, 5, 2, 9, 12, 5, 23, 23]\n",
+        "\n",
+        "# Initial alpha and beta values\n",
+        "alpha = float('-inf')\n",
+        "beta = float('inf')\n",
+        "\n",
+        "# Find the optimal value\n",
+        "result = alphabeta(0, 0, True, scores, alpha, beta)\n",
+        "\n",
+        "print(\"The optimal value is:\", result)\n",
+        "\n",
+        "\n"
+      ]
+    }
+  ]
+}
